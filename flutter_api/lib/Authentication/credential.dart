@@ -1,16 +1,14 @@
-import 'package:flutter/material.dart';
-class Credential{
+class Credential {
   final AuthType type;
   final String name;
   final String email;
   final String password;
 
-  Credential({
-    required this.type,
-    required this.name,
-    required this.email,
-    required this.password
-  });
-
+  Credential(
+      {required this.type,
+      required this.name,
+      required this.email,
+      required this.password});
 }
-enum AuthType{ email, google }
+
+enum AuthType { email, google }

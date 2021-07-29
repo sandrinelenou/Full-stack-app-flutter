@@ -23,6 +23,9 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerPassword = TextEditingController();
 
+  /* @override
+  void initState() {}*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,21 +41,59 @@ class _FormScreenState extends State<FormScreen> {
                   decoration: InputDecoration(hintText: 'Name'),
                   keyboardType: TextInputType.text,
                   controller: _controllerName,
+                  // The validator receives the text that the user has entered.
+                  /*validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter Name';
+                    }
+                    return null;
+                  },*/
                 ),
                 TextField(
                   decoration: InputDecoration(hintText: 'Email'),
                   keyboardType: TextInputType.emailAddress,
                   controller: _controllerEmail,
+                  /*
+                   validator: (value) {
+                      if (value.isEmpty || !value.contains('@')) {
+                        return 'Invalid email!';
+                      }
+                    },
+                  * */
                 ),
                 TextField(
                   decoration: InputDecoration(hintText: 'Password'),
                   keyboardType: TextInputType.visiblePassword,
                   controller: _controllerPassword,
+                  /*validator: (value) {
+                      if (value.isEmpty && value.length < 7) {
+                        return 'Invalid password!';
+                      }
+                    },*/
                 ),
                 Padding(padding: EdgeInsets.only(top: 10.0)),
                 widget.id == ''
-                    ? RaisedButton(child: Text('Submit'), onPressed: () {})
-                    : RaisedButton(child: Text('Update '), onPressed: () {}),
+                    ? ElevatedButton(
+                        child: Text('Submit'),
+                        onPressed: () {
+                          /* String name: _controllerName.text.toString().trim();
+                       String email: _controllerEmail.text.toString().trim();
+                       String password: _controllerPassword.text.toString().trim();
+                       if(name.isEmpty){
+
+                       }*/
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                // Retrieve the text the user has entered by using the
+                                // TextEditingController.
+                                content: Text(_controllerName.text),
+                              );
+                            },
+                          );
+                        })
+                    : ElevatedButton(child: Text('Update '), onPressed: () {}),
               ],
             ),
           ),

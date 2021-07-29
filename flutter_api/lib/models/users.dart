@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Users {
   String id;
   String name;
@@ -14,7 +12,8 @@ class Users {
 
   factory Users.fromJson(Map<String, dynamic> json) {
     return Users(
-        id: json['_id'], //id: json['id'] ?? "",     id: json['_id'] as String,
+        //id: json['id'] ?? "",     id: json['_id'] as String,
+        id: json['_id'] ?? "",
         name: json['name'] ?? "",
         email: json['email'] ?? "",
         password: json['password'] ?? "");
@@ -30,10 +29,11 @@ class Users {
   }
 }
 
-List<Users> userFromJson(String strJson) {
+/*List<Users> userFromJson(String strJson) {
   final str = json.decode(strJson);
-  return List<Users>.from(str.map((item) {
-    return Users.fromJson(item);
+  print(strJson);
+  return List<Users>.from(str.map((user) {
+    return Users.fromJson(user);
   }));
   //return User.fromJson((str));
 }
@@ -41,4 +41,4 @@ List<Users> userFromJson(String strJson) {
 String userToJson(Users data) {
   final dyn = data.toJson();
   return json.encode(dyn);
-}
+}*/

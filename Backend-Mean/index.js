@@ -19,7 +19,19 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cors());
 
-app.use('/', require('./routes/index.route'));
+
+//CORS
+app.use((req, res, next) => {
+    res.setHeader("Access-control-Allow-Origin", "*");
+    res.setHeader(
+        "Access-Control-Allow-Headers",
+        "Origine, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Methods",
+        "GET, POST, PATCH,PUT, DELETE, OPTIONS");
+    next();
+});
+
+app.use('/api/user', require('./routes/index.route'));
 
 const port = 3000 | process.env.PORT ;
 

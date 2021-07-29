@@ -3,7 +3,8 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_api/form/form_screen.dart';
+import 'package:flutter_api/form/addUser.dart';
+import 'package:flutter_api/pages/note_list.dart';
 
 import 'list_users.dart';
 
@@ -30,29 +31,35 @@ class NavDrawerDemo extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => FormScreen(
-                          id: '',
-                          password: '',
-                          name: '',
-                          email: '',
-                        )),
+                MaterialPageRoute(builder: (context) => ListUsers()),
               );
             },
             child: ListTile(
-              title: Text('add User'),
-              leading: const Icon(Icons.favorite),
+              title: Text('List Users'),
+              leading: const Icon(Icons.comment),
             ),
           ),
           GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ListUsers()),
+                MaterialPageRoute(builder: (context) => addUser()),
               );
             },
             child: ListTile(
-              title: Text('List Users'),
+              title: Text('Add User'),
+              leading: const Icon(Icons.comment),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NoteList()),
+              );
+            },
+            child: ListTile(
+              title: Text('List Notes'),
               leading: const Icon(Icons.comment),
             ),
           ),

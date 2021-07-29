@@ -5,24 +5,26 @@ import 'package:flutter_api/pages/movie_detail.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'form/form_screen.dart';
+import 'form/addUser.dart';
 
 //https://omdbapi.com/?s=Batman&page=2&apikey=564727fa
 //https://api.themoviedb.org/3/movie/now_playing?api_key=1500496dcaf1512b62894bd98ba83f9d
 class MyHomePage extends StatelessWidget {
-
   late final List<Movie> movies;
 
   //Future<List<Movie>> fetchAllMovies() async {
-  Future fetchAllMovies() async{
+  Future fetchAllMovies() async {
+    final url =
+        "https://api.themoviedb.org/3/movie/now_playing?api_key=1500496dcaf1512b62894bd98ba83f9d";
     final response = await http.get(Uri.parse(
-        "https://api.themoviedb.org/3/movie/now_playing?api_key=1500496dcaf1512b62894bd98ba83f9d")); // response = await http.get(Uri.https('jsonplaceholder.typicode.com', 'users'));
+        url)); // response = await http.get(Uri.https('jsonplaceholder.typicode.com', 'users'));
 
     if (response.statusCode == 200) {
       /*final result = json.decode(response.body);
       Iterable list = result["results"];
       return list.map((movie) => Movie.fromJson(movie)).toList();*/
-     List<dynamic> result = json.decode(response.body)["results"]; // //var jsonString = response.body;   //var jsonMap = jsonDecode(jsonString); var result = json.decode(response.body)["results"];
+      List<dynamic> result = json.decode(response.body)[
+          "results"]; // //var jsonString = response.body;   //var jsonMap = jsonDecode(jsonString); var result = json.decode(response.body)["results"];
 
       return result
           .map((movie) => Movie.fromJson(movie))
@@ -35,19 +37,20 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
         // backgroundColor: Color(0xFFEFEFEF),
-        title: Text("Movies API",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+        title: Text(
+          "Movies API",
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
         ),
-        actions:<Widget> [
+        actions: <Widget>[
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FormScreen(id: '', password: '', name: '', email: '',)));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => addUser()));
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -55,7 +58,6 @@ class MyHomePage extends StatelessWidget {
             ),
           )
         ],
-
       ),
       drawer: NavDrawerDemo(),
       body: FutureBuilder(
@@ -73,11 +75,12 @@ class MyHomePage extends StatelessWidget {
                 //padding: EdgeInsets.all(8),
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MovieDetail(movie: snapshot.data[index]),
+                          builder: (context) =>
+                              MovieDetail(movie: snapshot.data[index]),
                         ),
                       );
                     },

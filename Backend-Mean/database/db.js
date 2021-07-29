@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 //mongoose.Promise = global.Promise();
 
-const url = "mongodb://localhost:27017/flutterApp";
+const url = "mongodb://localhost:27017/test";
 
 //connect mongoDB at default port 27017
 //let mong = mongoose.connect('mongodb://localhost:27017/flutterApp', {useUnifiedTopology: true, useNewUrlParser: true})

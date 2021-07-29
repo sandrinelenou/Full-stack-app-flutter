@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-
-class Token{
+class Token {
   final String value;
 
   const Token(this.value);
-
 }
